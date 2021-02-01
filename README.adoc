@@ -11,13 +11,13 @@ Setup steps (basic GraalVM and Neo4j install):
 
 Steps to run the examples:
 
-1) Open the file folder where you installed the database (we'll use this in a minute).
-2) Clone this repository, open in your preferred IDE.
-3) Build the project, then run `mvn clean package` (either at command line or through your IDE). This will create a .jar file in the `target` folder.
-4) In your IDE or project folder, copy the .jar file (neo4j-graalvm-polyglot-1.0-SNAPSHOT.jar) and paste it in the `/plugins` folder where Neo4j is installed.
-5) If already started, restart Neo4j.
-6) Open a Neo4j Browser window (web browser and go to localhost:7474).
-7) Run some test commands to see how it works!
+1. Open the file folder where you installed the database (we'll use this in a minute).
+2. Clone this repository, open in your preferred IDE.
+3. Build the project, then run `mvn clean package` (either at command line or through your IDE). This will create a .jar file in the `target` folder.
+4. In your IDE or project folder, copy the .jar file (neo4j-graalvm-polyglot-1.0-SNAPSHOT.jar) and paste it in the `/plugins` folder where Neo4j is installed.
+5. If already started, restart Neo4j.
+6. Open a Neo4j Browser window (web browser and go to localhost:7474).
+7. Run some test commands to see how it works!
   * Example 1: `CALL polyglot.run('js', '"hello"')`
   * Example 2: `CALL polyglot.run('js','print("hello")')` (print messages go to neo4j.log output)
   * Example 3: `CALL polyglot.run('python','CALL polyglot.run('python',
