@@ -1,0 +1,25 @@
+== Run code as a Neo4j extension with GraalVM
+Neo4j extension to execute various languages with Cypher.
+
+Setup steps (basic GraalVM and Neo4j install):
+
+1. Download https://neo4j.com/download-center/#community[Neo4j community server^] from neo4j.com.
+2. Follow download instructions to set up the database and start it.
+3. Download and install GraalVM SDK. https://www.graalvm.org/docs/getting-started/#install-graalvm[GraalVM docs^] shows one way, but I used https://sdkman.io/[SDKMAN!^] to install it and set GraalVM's Java (currently `20.3.0.r11-grl`) as my default SDK.
+4. Install any GraalVM languages you intend to use with the https://www.graalvm.org/reference-manual/graalvm-updater/#component-installation[GraalVM Updater^] (gu). Use command syntax `gu install <language>`. *Note:* there may be a couple of other steps for dependencies to run a language, see the https://www.graalvm.org/reference-manual/languages/[docs^] for each language.
+5. Create and start an instance of Neo4j (`bin/neo4j start`).
+
+Steps to run the examples:
+
+1) Open the file folder where you installed the database (we'll use this in a minute).
+2) Clone this repository, open in your preferred IDE.
+3) Build the project, then run `mvn clean package` (either at command line or through your IDE). This will create a .jar file in the `target` folder.
+4) In your IDE or project folder, copy the .jar file (neo4j-graalvm-polyglot-1.0-SNAPSHOT.jar) and paste it in the `/plugins` folder where Neo4j is installed.
+5) If already started, restart Neo4j.
+6) Open a Neo4j Browser window (web browser and go to localhost:7474).
+7) Run some test commands to see how it works!
+  * Example 1: `CALL polyglot.run('js', '"hello"')`
+  * Example 2: `CALL polyglot.run('js','print("hello")')` (print messages go to neo4j.log output)
+  * Example 3: `CALL polyglot.run('python','CALL polyglot.run('python',
+'import math; totalEntities = 3000; callsNeeded = int(math.ceil(totalEntities / 100)); callsNeeded');')`
+  * Languages accepted as first parameter: llvm, R, js, python, ruby
